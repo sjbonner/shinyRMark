@@ -2,3 +2,16 @@ Package: shinyRMark
 Version: 0.0.1
 Date: 2018-01-25
 Title: Shiny Interface for RMark
+Authors@R: c(person("Simon", "Bonner", email = "sbonner6@uwo.ca", role = c("aut", "cre"),
+            person("Hanna","Kim", email = "hkim787@uwo.ca",role="aut"),
+            person("Wei","Zhang", email = "wzhan592@uwo.ca",roel="aut"),
+            person("Alex","Draghici", email = "mdraghic@uwo.ca",role="aut"),
+            person("Jiaqi","Mu", email = "jmu6@uwo.ca",role="aut"))
+Description: Provides a shiny graphical user interface to the RMark
+  package with two objectives: 1) allowing applied researchers to fit models in MARK via
+  RMark without the need for command-line programming and 2) allowing
+  developers to extend methods for processing the output from MARK in R. 
+Depends: R (>= 3.0.0)
+License: GPL (>=3)
+Encoding: UTF-8
+LazyData: true
