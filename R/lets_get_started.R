@@ -20,3 +20,4 @@ lm3 = lm(Time~Subject*Type, data=candy)
 summary(lm3)
 #plot(lm3)
 
+anova(lm2,lm3)
