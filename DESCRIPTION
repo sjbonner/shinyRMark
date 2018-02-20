@@ -2,9 +2,9 @@ Package: shinyRMark
 Version: 0.0.1
 Date: 2018-01-25
 Title: Shiny Interface for RMark
-Authors@R: c(person("Simon", "Bonner", email = "sbonner6@uwo.ca", role = c("aut", "cre"),
+Authors@R: c(person("Simon", "Bonner", email = "sbonner6@uwo.ca", role = c("aut", "cre")),
             person("Hanna","Kim", email = "hkim787@uwo.ca",role="aut"),
-            person("Wei","Zhang", email = "wzhan592@uwo.ca",roel="aut"),
+            person("Wei","Zhang", email = "wzhan592@uwo.ca",role="aut"),
             person("Alex","Draghici", email = "mdraghic@uwo.ca",role="aut"),
             person("Jiaqi","Mu", email = "jmu6@uwo.ca",role="aut"))
 Description: Provides a shiny graphical user interface to the RMark
