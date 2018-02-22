@@ -25,3 +25,9 @@ vignettes/*.pdf
 .Rproj.user
 shinyRMark.Rproj
 inst/doc
+# Mark files created by the vignettes
+vignettes/mark*.inp
+vignettes/mark*.out
+vignettes/mark*.res
+vignettes/mark*.vcv
+vignettes/mark*.tmp
