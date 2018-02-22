@@ -11,10 +11,98 @@ vignette: >
 
 # Preliminaries
 ```{r}
+## Load packages
+library(RMark)
+library(tidyverse)
+library(devtools)
+
 ## Load package
-library(shinyRMark)
+devtools::load_all()
 
 ## Load data
 data(wtsp)
+```
+
+# Data Manipulations
+
+## 1) Create capture histories
+```{r}
+## Create capture histories
+wtsp <- collapseCH(data=wtsp,prefix = "Time")
+
+## Drop time variables
+wtsp <- select(wtsp,-starts_with("Time"))
+```
+
+## 2) Process Data
+```{r}
+## Process data
+wtsp.processed <- process.data(wtsp, model="CJS", groups=c("SEX","TREATMENT"))
+```
+
+## 3) Generate Design Data
+```{r}
+## Create default design data
+wtsp.ddl <- make.design.data(wtsp.processed,
+                             parameters = list(Phi=list(pim.type="time"),
+                                               p=list(pim.type="time")))
+```
+
+# Modelling
+
+```{r}
+## Define formulas
+fdot <- list(formula=~1)
+ftreat <- list(formula=~TREATMENT)
+ftime <- list(formula=~time)
+ftreat.sex <- list(formula=~TREATMENT * SEX)
+```
+
+```{r,message=FALSE}
+## Fit models
+
+## 1) Phi{.},p{.}
+model1 <- mark(wtsp.processed,
+               ddl=wtsp.ddl,
+               model.parameters = list(Phi=fdot,p=fdot),
+               model.name = "Phi{.},p{.}")
+
+model1$results$real
+
+
+```
+```{r}
+## 2) Phi{t},p{.}
+model2 <- mark(wtsp.processed,
+               ddl=wtsp.ddl,
+               model.parameters = list(Phi=ftime,p=fdot),
+               model.name = "Phi{time},p{.}")
+
+model2$results$real
+```
+
+```{r}
+## 3) Phi{TREATMENT},p{.}
+model3 <- mark(wtsp.processed,
+               ddl=wtsp.ddl,
+               model.parameters = list(Phi=ftreat,p=fdot),
+               model.name = "Phi{TREATMENT},p{.}")
+
+model3$results$real
+```
+
+```{r}
+## 4) Phi{TREATMENT*SEX},p{.}
+model4 <- mark(wtsp.processed,
+               ddl=wtsp.ddl,
+               model.parameters = list(Phi=ftreat.sex,p=fdot),
+               model.name = "Phi{TREATMENT*SEX},p{.}")
+
+model4$results$real
+```
+
+```{r}
+## Compare models
+collect.models()
 ```
 
